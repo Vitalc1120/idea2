@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:jee="http://www.springframework.org/schema/jee"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.1.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.1.xsd
+		http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-4.1.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.1.xsd">
+
+    <!-- 调用无参 -->
+    <bean id="getPerson" class="cn.blb.bean.Person" lazy-init="true">
+    </bean>
+
+    <!-- 静态工厂 -->
+    <bean id="byStaticFactory" class="cn.blb.factory.StaticFactory" factory-method="staticFactory" lazy-init="true">
+        <property name="name" value="静态"></property>
+    </bean>
+
+    <!-- 实例工厂 -->
+    <bean id="factory" class="cn.blb.factory.Factory"></bean>
+    <bean id="byFactory" factory-bean="factory" factory-method="factory" lazy-init="true">
+        <property name="name" value="实例"></property>
+    </bean>
+</beans>
